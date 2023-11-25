@@ -2,7 +2,7 @@ from selene import browser, have, be
 
 
 def test_complete_todo():
-    browser.open('/')
+    browser.open('/automation-practice-form')
 
     # заполнение формы
     registration_form = browser.element('#userForm')
