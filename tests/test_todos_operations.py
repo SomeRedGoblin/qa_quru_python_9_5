@@ -39,4 +39,3 @@ def test_complete_todo():
     result_form.element("//*[text()=('Picture')]/../td[2]").should(have.text(''))
     result_form.element("//*[text()=('Address')]/../td[2]").should(have.text('ул. Ленина 4'))
     result_form.element("//*[text()=('State and City')]/../td[2]").should(have.text('Haryana Panipat'))
-
