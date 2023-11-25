@@ -1,4 +1,5 @@
 from selene import browser, have, be
+import os
 
 
 def test_complete_todo():
@@ -21,6 +22,7 @@ def test_complete_todo():
     registration_form.element('.subjects-auto-complete__input input').set_value('Math').press_enter()
     registration_form.element('#hobbiesWrapper').element('//*[text()=("Sports")]').click()
     registration_form.element('#hobbiesWrapper').element('//*[text()=("Music")]').click()
+    registration_form.element('#uploadPicture').send_keys(os.path.abspath('data/test01.png'))
     registration_form.element('#currentAddress').type('ул. Ленина 4')
     registration_form.element('#state').click().element('#react-select-3-option-2').click()
     registration_form.all('#state').first().click()
@@ -36,6 +38,6 @@ def test_complete_todo():
     result_form.element("//*[text()=('Date of Birth')]/../td[2]").should(have.text('04 May,2000'))
     result_form.element("//*[text()=('Subjects')]/../td[2]").should(have.text('Maths'))
     result_form.element("//*[text()=('Hobbies')]/../td[2]").should(have.text('Sports, Music'))
-    result_form.element("//*[text()=('Picture')]/../td[2]").should(have.text(''))
+    result_form.element("//*[text()=('Picture')]/../td[2]").should(have.text('test01.png'))
     result_form.element("//*[text()=('Address')]/../td[2]").should(have.text('ул. Ленина 4'))
     result_form.element("//*[text()=('State and City')]/../td[2]").should(have.text('Haryana Panipat'))
