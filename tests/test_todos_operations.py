@@ -13,8 +13,7 @@ def test_complete_todo():
     registration_form.element('#userNumber').should(be.blank).type('9123456789')
     registration_form.element('#dateOfBirthInput').click()
     registration_form.element('.react-datepicker__month-dropdown-container--select').click()
-    registration_form.all('.react-datepicker__month-dropdown-container--select > select').element_by(
-        have.text("May")).click()
+    registration_form.all('.react-datepicker__month-select > option').element_by(have.text("May")).click()
     registration_form.element('.react-datepicker__year-dropdown-container--select').click()
     registration_form.all('.react-datepicker__year-select > option').element_by(have.text("2000")).click()
     registration_form.all('.react-datepicker__day').element_by(have.text("4")).click()
@@ -30,4 +29,14 @@ def test_complete_todo():
 
     # Проверка отправленных значений
     result_form = browser.element('.modal-content')
-    # TBD
+    result_form.element("//*[text()=('Student Name')]/../td[2]").should(have.text('John Week'))
+    result_form.element("//*[text()=('Student Email')]/../td[2]").should(have.text('john.week@example.com'))
+    result_form.element("//*[text()=('Gender')]/../td[2]").should(have.text('Male'))
+    result_form.element("//*[text()=('Mobile')]/../td[2]").should(have.text('9123456789'))
+    result_form.element("//*[text()=('Date of Birth')]/../td[2]").should(have.text('04 May,2000'))
+    result_form.element("//*[text()=('Subjects')]/../td[2]").should(have.text('Maths'))
+    result_form.element("//*[text()=('Hobbies')]/../td[2]").should(have.text('Sports, Music'))
+    result_form.element("//*[text()=('Picture')]/../td[2]").should(have.text(''))
+    result_form.element("//*[text()=('Address')]/../td[2]").should(have.text('ул. Ленина 4'))
+    result_form.element("//*[text()=('State and City')]/../td[2]").should(have.text('Haryana Panipat'))
+
